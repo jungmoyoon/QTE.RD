@@ -1,4 +1,4 @@
-# QTE_RD
+# QTE.RD
 Quantile Treatment Effects under the Regression Discontinuity Design
 
 The R package QTE.RD provides comprehensive methods for testing, estimating, and conducting uniform inference on quantile treatment effects (QTEs) in sharp regression discontinuity (RD) designs, incorporating covariates and implementing robust bias correction methods of Qu, Yoon, Perron (2024) doi:10.1162/rest_a_01168.
