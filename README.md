@@ -9,10 +9,10 @@ library(QTE.RD)
 
 The package QTE.RD includes four main functions:
 
-rd.qte() estimates QTEs and provides uniform confidence bands, with or without covariates, and with or without robust bias correction.
+1) rd.qte() estimates QTEs and provides uniform confidence bands, with or without covariates, and with or without robust bias correction.
 
-rdq.test() conducts tests for three hypotheses, related to the significance of treatment effects, homogeneous treatment effects, and uniformly positive or negative treatment effects.
+2) rdq.test() conducts tests for three hypotheses, related to the significance of treatment effects, homogeneous treatment effects, and uniformly positive or negative treatment effects.
 
-rdq.bandwidth() implements two bandwidth selection rules: the cross-validation bandwidth and the MSE optimal bandwidth.
+3) rdq.bandwidth() implements two bandwidth selection rules: the cross-validation bandwidth and the MSE optimal bandwidth.
 
-plot.qte() generates figures summarizing the treatment effects along with their confidence bands.
+4) plot.qte() generates figures summarizing the treatment effects along with their confidence bands.
