@@ -45,8 +45,49 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9">
-Provides comprehensive methods for testing, estimating, and conducting uniform inference on quantile treatment effects (QTEs) in sharp regression discontinuity (RD) designs, incorporating covariates and implementing robust bias correction methods of Qu, Yoon, Perron (2024) &lt;<a href="https://doi.org/10.1162/rest_a_01168" class="external-link">doi:10.1162/rest_a_01168</a>&gt;.
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="qterd">QTE.RD<a class="anchor" aria-label="anchor" href="#qterd"></a>
+</h1></div>
+<!-- badges: start -->
+<!-- badges: end -->
+<p>The goal of <strong>QTE.RD</strong> is to provide comprehensive tools for testing, estimating, and conducting uniform inference on quantile treatment effects (QTEs) in sharp regression discontinuity (RD) designs. When treatment effects vary across covariate-groups, QTE.RD facilitates the estimation, testing, and visualization of heterogeneous effects by incorporating covariates and applying the robust bias correction methods developed by Qu, Yoon, and Perron (2024, <a href="doi:10.1162/rest_a_01168" class="uri">doi:10.1162/rest_a_01168</a>).</p>
+<p>The package is available on CRAN and can be loaded by</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">QTE.RD</span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<p>The following example demonstrates how to use the <code>rd.qte</code> function from the <strong>QTE.RD</strong> package, using data from Duflo, Dupas, and Kremer (2011, AER). It estimates the quantile treatment effects of tracking on student achievement.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"ddk_2011"</span><span class="op">)</span></span>
+<span><span class="va">trk</span> <span class="op">&lt;-</span> <span class="va">ddk_2011</span><span class="op">$</span><span class="va">tracking</span></span>
+<span><span class="va">high</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">-</span><span class="va">ddk_2011</span><span class="op">$</span><span class="va">lowstream</span></span>
+<span><span class="va">ts</span> <span class="op">&lt;-</span> <span class="va">ddk_2011</span><span class="op">$</span><span class="va">totalscore</span></span>
+<span><span class="va">yy</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">ts</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">ts</span><span class="op">[</span><span class="va">trk</span><span class="op">==</span><span class="fl">0</span><span class="op">]</span>,na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">ts</span><span class="op">[</span><span class="va">trk</span><span class="op">==</span><span class="fl">0</span><span class="op">]</span>,na.rm<span class="op">=</span><span class="cn">T</span><span class="op">)</span></span>
+<span><span class="va">xx</span> <span class="op">&lt;-</span> <span class="va">ddk_2011</span><span class="op">$</span><span class="va">percentile</span></span>
+<span><span class="va">yc</span> <span class="op">&lt;-</span> <span class="va">yy</span><span class="op">[</span><span class="va">trk</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">xc</span> <span class="op">&lt;-</span> <span class="va">xx</span><span class="op">[</span><span class="va">trk</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">dc</span> <span class="op">&lt;-</span> <span class="va">high</span><span class="op">[</span><span class="va">trk</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rd.qte.html">rd.qte</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">yc</span>,x<span class="op">=</span><span class="va">xc</span>,d<span class="op">=</span><span class="va">dc</span>,x0<span class="op">=</span><span class="fl">50</span>,z0<span class="op">=</span><span class="cn">NULL</span>,tau<span class="op">=</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span><span class="op">/</span><span class="fl">10</span><span class="op">)</span>,bdw<span class="op">=</span><span class="fl">20</span>,cov<span class="op">=</span><span class="fl">0</span>,bias<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">A</span>,alpha<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;                                  QTE                                   </span></span>
+<span><span class="co">#&gt; ---------------------------------------------------------------------- </span></span>
+<span><span class="co">#&gt;              Bias cor.    Pointwise         Uniform      </span></span>
+<span><span class="co">#&gt;     Tau         Est.     Robust S.E.    90% Conf. Band  </span></span>
+<span><span class="co">#&gt;      0.1      -0.104       0.138      -0.437       0.228</span></span>
+<span><span class="co">#&gt;      0.2      -0.001       0.145      -0.351       0.349</span></span>
+<span><span class="co">#&gt;      0.3      -0.068       0.157      -0.447       0.312</span></span>
+<span><span class="co">#&gt;      0.4      -0.074       0.164      -0.470       0.322</span></span>
+<span><span class="co">#&gt;      0.5      -0.157       0.185      -0.604       0.290</span></span>
+<span><span class="co">#&gt;      0.6      -0.069       0.220      -0.599       0.461</span></span>
+<span><span class="co">#&gt;      0.7      -0.020       0.268      -0.667       0.628</span></span>
+<span><span class="co">#&gt;      0.8      -0.023       0.308      -0.767       0.721</span></span>
+<span><span class="co">#&gt;      0.9      -0.003       0.267      -0.646       0.641</span></span></code></pre></div>
+</div>
+</div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
