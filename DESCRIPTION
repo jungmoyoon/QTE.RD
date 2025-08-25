@@ -1,6 +1,6 @@
 Package: QTE.RD
 Title: Quantile Treatment Effects under the Regression Discontinuity Design
-Version: 1.1.0
+Version: 1.2.0
 Authors@R: 
     c(person(given="Zhongjun", family="Qu", email = "qu@bu.edu", role = c("aut","cph")),person(given="Jungmo", family="Yoon", email = "jmyoon@hanyang.ac.kr", role = c("aut","cre","cph")))
 Author: Zhongjun Qu [aut, cph],
@@ -16,8 +16,13 @@ Imports:
     stats
 License: GPL (>= 3)
 Suggests: 
-    spelling
+    knitr,
+    rmarkdown,
+    spelling,
+    testthat (>= 3.0.0)
 Language: en-US
 Depends: 
     R (>= 2.10)
 LazyData: true
+Config/testthat/edition: 3
+VignetteBuilder: knitr

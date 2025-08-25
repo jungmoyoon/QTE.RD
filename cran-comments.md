@@ -1,6 +1,14 @@
+## Revision. QTE.RD 1.2.0
+
+This is the second revision. In this version, I have
+
+* Added a vignette that demonstrates how to use functions in the package and interpret their results in empirical applications.
+
+* Included a dataset on student achievement (ddk_2011), which is used as an example in the vignette.
+
 ## Revision. QTE.RD 1.1.0
 
-This is a first revision. I this version, I have
+This is the first revision. In this version, I have
 
 * Added summary.qte() and several print methods.
 

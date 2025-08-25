@@ -28,17 +28,12 @@ AER). It estimates the quantile treatment effects of tracking on student
 achievement.
 
 ``` r
-data("ddk_2011")
-trk <- ddk_2011$tracking
-high <- 1-ddk_2011$lowstream
-ts <- ddk_2011$totalscore
-yy <- (ts - mean(ts[trk==0],na.rm=T))/sd(ts[trk==0],na.rm=T)
-xx <- ddk_2011$percentile
-yc <- yy[trk==1]
-xc <- xx[trk==1]
-dc <- high[trk==1]
+data(ddk_2011)
+yc <- ddk_2011$ts_std[ddk_2011$tracking==1]
+xc <- ddk_2011$percentile[ddk_2011$tracking==1]
+dc <- ddk_2011$highstream[ddk_2011$tracking==1]
 
-A <- rd.qte(y=yc,x=xc,d=dc,x0=50,z0=NULL,tau=(1:9/10),bdw=20,cov=0,bias=1)
+A <- rd.qte(y=yc,x=xc,d=dc,x0=50,z0=NULL,tau=(1:9/10),bdw=20,bias=1)
 summary(A,alpha=0.1)
 #> 
 #> 
@@ -46,13 +41,13 @@ summary(A,alpha=0.1)
 #> ---------------------------------------------------------------------- 
 #>              Bias cor.    Pointwise         Uniform      
 #>     Tau         Est.     Robust S.E.    90% Conf. Band  
-#>      0.1      -0.104       0.138      -0.437       0.228
-#>      0.2      -0.001       0.145      -0.351       0.349
-#>      0.3      -0.068       0.157      -0.447       0.312
-#>      0.4      -0.074       0.164      -0.470       0.322
-#>      0.5      -0.157       0.185      -0.604       0.290
-#>      0.6      -0.069       0.220      -0.599       0.461
-#>      0.7      -0.020       0.268      -0.667       0.628
-#>      0.8      -0.023       0.308      -0.767       0.721
-#>      0.9      -0.003       0.267      -0.646       0.641
+#>      0.1      -0.104       0.139      -0.438       0.229
+#>      0.2      -0.001       0.141      -0.340       0.337
+#>      0.3      -0.068       0.149      -0.425       0.290
+#>      0.4      -0.074       0.155      -0.446       0.298
+#>      0.5      -0.157       0.177      -0.581       0.268
+#>      0.6      -0.069       0.213      -0.581       0.442
+#>      0.7      -0.020       0.270      -0.668       0.629
+#>      0.8      -0.023       0.318      -0.787       0.740
+#>      0.9      -0.003       0.274      -0.661       0.656
 ```

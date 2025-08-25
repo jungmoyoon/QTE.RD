@@ -41,23 +41,24 @@
 #' d <- (x > 0)
 #' y <- x + 0.3*(x^2) - 0.1*(x^3) + 1.5*d + rnorm(n)
 #' tlevel = seq(0.1,0.9,by=0.1)
-#' \donttest{A <- rd.qte(y=y,x=x,d=d,x0=0,z0=NULL,tau=tlevel,bdw=2,cov=0,bias=1)}
+#' \donttest{A <- rd.qte(y=y,x=x,d=d,x0=0,z0=NULL,tau=tlevel,bdw=2,bias=1)}
 #' \donttest{A2 <- summary(A,alpha=0.1)}
 #'
 #' # (continued) With covariates
 #' z <- sample(c(0,1),n,replace=TRUE)
 #' y <- x + 0.3*(x^2) - 0.1*(x^3) + 1.5*d + d*z + rnorm(n)
-#' \donttest{A <- rd.qte(y=y,x=cbind(x,z),d=d,x0=0,z0=c(0,1),tau=tlevel,bdw=2,cov=1,bias=1)}
+#' \donttest{A <- rd.qte(y=y,x=cbind(x,z),d=d,x0=0,z0=c(0,1),tau=tlevel,bdw=2,bias=1)}
 #' \donttest{A2 <- summary(A,alpha=0.1)}
 #'
-summary.qte <- function(object,alpha,...){
+#'
+summary.qte <- function(object,alpha=0.1,...){
   # obtains uniform confidence bands and standard errors
   if(length(alpha)==0){stop("Provide alpha to obtain confidence band.")}
   tau <- object$tau
   bdw <- object$bdw
   cov <- object$cov
   bias <- object$bias
-  ba  <- rdq.band(object$y,object$x,object$d,object$x0,object$z0,tau,bdw,cov,alpha)
+  ba  <- rdq.band(y=object$y,x=object$x,d=object$d,x0=object$x0,z0=object$z0,tau=tau,bdw=bdw,alpha=alpha)
   if(bias==0){out = list(uband = ba$uband, sigma = ba$sig, uband.p = ba$uband.p, uband.m = ba$uband.m)}
   if(bias==1){out = list(uband = ba$uband.robust, sigma = ba$sig.r, uband.p = ba$uband.robust.p, uband.m = ba$uband.robust.m)}
   out <- append(out, list(tau=tau, qte=object$qte, qp=object$qp.est, qm=object$qm.est, cov=cov, bias=bias, alpha=alpha), after=4)

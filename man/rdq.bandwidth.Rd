@@ -4,8 +4,7 @@
 \alias{rdq.bandwidth}
 \title{Bandwidth estimation}
 \usage{
-rdq.bandwidth(y, x, d, x0, z0=NULL, cov, cv, val,hp=NULL,pm.each=1,
-     bdy=1,p.order=1,xl=0.5)
+rdq.bandwidth(y, x, d, x0, z0=NULL, cv, val,hp=NULL, pm.each=0, bdy=1, p.order=1, xl=0.5)
 }
 \arguments{
 \item{y}{a numeric vector, the outcome variable.}
@@ -17,9 +16,6 @@ rdq.bandwidth(y, x, d, x0, z0=NULL, cov, cv, val,hp=NULL,pm.each=1,
 \item{x0}{the cutoff point.}
 
 \item{z0}{the value of the covariates at which to evaluate the effects.}
-
-\item{cov}{either 0 or 1. Set \emph{cov=1} when covariates are present in the model;
-otherwise set \emph{cov=0}.}
 
 \item{cv}{either 0 or 1. When \emph{cv=1}, both the CV and MSE optimal bandwidths
 are produced. When \emph{cv=0}, the MSE optimal bandwidth is produced.}
@@ -57,13 +53,13 @@ x = runif(n,min=-4,max=4)
 d = (x > 0)
 y = x + 0.3*(x^2) - 0.1*(x^3) + 1.5*d + rnorm(n)
 tlevel = seq(0.1,0.9,by=0.1)
-rdq.bandwidth(y=y,x=x,d=d,x0=0,z0=NULL,cov=0,cv=1,val=(1:4))
-rdq.bandwidth(y=y,x=x,d=d,x0=0,z0=NULL,cov=0,cv=0,val=(1:4),hp=2)
+rdq.bandwidth(y=y,x=x,d=d,x0=0,z0=NULL,cv=1,val=(1:4))
+rdq.bandwidth(y=y,x=x,d=d,x0=0,z0=NULL,cv=0,val=(1:4),hp=2)
 
 # (continued) With covariates
 z = sample(c(0,1),n,replace=TRUE)
 y = x + 0.3*(x^2) - 0.1*(x^3) + 1.5*d + d*z + rnorm(n)
-rdq.bandwidth(y=y,x=cbind(x,z),d=d,x0=0,z0=c(0,1),cov=1,cv=1,val=(1:4),bdy=1,p.order=1)
+rdq.bandwidth(y=y,x=cbind(x,z),d=d,x0=0,z0=c(0,1),cv=1,val=(1:4),bdy=1,p.order=1)
 
 }
 \references{

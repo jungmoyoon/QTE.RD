@@ -71,18 +71,13 @@ rdq <- function(y,x,d,x0,z0=NULL,tau,h.tau,cov){
     Qm[,1] <- bcoe.m[,1]
   }
   if(cov==1 & dz==1){
-    for(jj in 1:dg){
-      Qp[,jj] <- bcoe.p[,1] + bcoe.p[,2]*z0[jj]
-      Qm[,jj] <- bcoe.m[,1] + bcoe.m[,2]*z0[jj]
-    }
+    Qp <- outer(bcoe.p[,1], rep(1, dg)) + outer(bcoe.p[,2], z0)
+    Qm <- outer(bcoe.m[,1], rep(1, dg)) + outer(bcoe.m[,2], z0)
   }
-  if(cov==1 & dz >1){
-    for(jj in 1:dg){
-      for(i in 1:length(tau)){
-        Qp[i,jj] <- bcoe.p[i,] %*% c(1,z0[jj,])
-        Qm[i,jj] <- bcoe.m[i,] %*% c(1,z0[jj,])
-      }
-    }
+  else if(cov==1 & dz > 1){
+    Zmat <- cbind(1, z0)
+    Qp <- bcoe.p %*% t(Zmat)
+    Qm <- bcoe.m %*% t(Zmat)
   }
   Qd <- Qp - Qm
   return(list(qte = Qd, qp.est = Qp, qm.est = Qm, bcoe.p = bcoe.p, bcoe.m = bcoe.m))

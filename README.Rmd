@@ -31,16 +31,11 @@ library(QTE.RD)
 The following example demonstrates how to use the `rd.qte` function from the **QTE.RD** package, using data from Duflo, Dupas, and Kremer (2011, AER). It estimates the quantile treatment effects of tracking on student achievement.
 
 ```{r example, result="hide"}
-data("ddk_2011")
-trk <- ddk_2011$tracking
-high <- 1-ddk_2011$lowstream
-ts <- ddk_2011$totalscore
-yy <- (ts - mean(ts[trk==0],na.rm=T))/sd(ts[trk==0],na.rm=T)
-xx <- ddk_2011$percentile
-yc <- yy[trk==1]
-xc <- xx[trk==1]
-dc <- high[trk==1]
+data(ddk_2011)
+yc <- ddk_2011$ts_std[ddk_2011$tracking==1]
+xc <- ddk_2011$percentile[ddk_2011$tracking==1]
+dc <- ddk_2011$highstream[ddk_2011$tracking==1]
 
-A <- rd.qte(y=yc,x=xc,d=dc,x0=50,z0=NULL,tau=(1:9/10),bdw=20,cov=0,bias=1)
+A <- rd.qte(y=yc,x=xc,d=dc,x0=50,z0=NULL,tau=(1:9/10),bdw=20,bias=1)
 summary(A,alpha=0.1)
 ```

@@ -4,12 +4,16 @@
 \alias{rdq.band}
 \title{Uniform confidence bands for QTE}
 \usage{
-rdq.band(y, x, d, x0, z0 = NULL, tau, bdw, cov, alpha)
+rdq.band(y, x, d, x0, z0 = NULL, tau, bdw, alpha)
 }
 \arguments{
 \item{y}{a numeric vector, the outcome variable.}
 
-\item{x}{a vector (or a matrix) of covariates, the first column is the running variable.}
+\item{x}{a vector (or a matrix) of covariates, When no covariates are included,
+\eqn{x} is simply a vector of the running variable
+and \eqn{z0} can be left unspecified. When covariates are included,
+\eqn{x} should be a matrix with the running variable in the first column and
+the covariates in the remaining columns.}
 
 \item{d}{a numeric vector, the treatment status.}
 
@@ -25,9 +29,6 @@ bandwidth for the median. The bandwidths for the rest of the quantiles are
 computed automatically using the formula in Yu and Jones (1998).
 If it is a vector with the same dimension as 'tau',
 the function will use these values for the respective quantiles accordingly.}
-
-\item{cov}{either 0 or 1. Set cov=1 when covariates are present in the model;
-otherwise set cov=0.}
 
 \item{alpha}{a number between 0 and 1, the desired significance level.}
 }
@@ -46,7 +47,8 @@ otherwise set cov=0.}
 }
 }
 \description{
-\code{rdq.band} produces uniform confidence bands for QTEs with and without bias correction. This function is used by \code{rd.qte} to generate uniform bands.
+\code{rdq.band} produces uniform confidence bands for QTEs with and without bias correction.
+This function is used by \code{rd.qte} to generate uniform bands.
 }
 \examples{
 # Without covariate
@@ -55,12 +57,12 @@ x = runif(n,min=-4,max=4)
 d = (x > 0)
 y = x + 0.3*(x^2) - 0.1*(x^3) + 1.5*d + rnorm(n)
 tlevel = seq(0.1,0.9,by=0.1)
-D = rdq.band(y=y,x=x,d=d,x0=0,z0=NULL,tau=tlevel,bdw=2,cov=0,alpha=0.1)
+D = rdq.band(y=y,x=x,d=d,x0=0,z0=NULL,tau=tlevel,bdw=2,alpha=0.1)
 
 # (continued) With covariates
 z = sample(c(0,1),n,replace=TRUE)
 y = x + 0.3*(x^2) - 0.1*(x^3) + 1.5*d + d*z + rnorm(n)
-\donttest{D = rdq.band(y=y,x=cbind(x,z),d=d,x0=0,z0=c(0,1),tau=tlevel,bdw=2,cov=1,alpha=0.1)}
+\donttest{D = rdq.band(y=y,x=cbind(x,z),d=d,x0=0,z0=c(0,1),tau=tlevel,bdw=2,alpha=0.1)}
 
 }
 \references{
