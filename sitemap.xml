@@ -1,11 +1,15 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://jungmoyoon.github.io/QTE.RD/404.html</loc></url>
 <url><loc>https://jungmoyoon.github.io/QTE.RD/LICENSE.html</loc></url>
+<url><loc>https://jungmoyoon.github.io/QTE.RD/articles/QTE_RD.html</loc></url>
+<url><loc>https://jungmoyoon.github.io/QTE.RD/articles/index.html</loc></url>
 <url><loc>https://jungmoyoon.github.io/QTE.RD/authors.html</loc></url>
 <url><loc>https://jungmoyoon.github.io/QTE.RD/index.html</loc></url>
 <url><loc>https://jungmoyoon.github.io/QTE.RD/news/index.html</loc></url>
 <url><loc>https://jungmoyoon.github.io/QTE.RD/reference/QTE.RD-package.html</loc></url>
+<url><loc>https://jungmoyoon.github.io/QTE.RD/reference/compute.bands.html</loc></url>
 <url><loc>https://jungmoyoon.github.io/QTE.RD/reference/cv.bandwidth.html</loc></url>
+<url><loc>https://jungmoyoon.github.io/QTE.RD/reference/ddk_2011.html</loc></url>
 <url><loc>https://jungmoyoon.github.io/QTE.RD/reference/depa.html</loc></url>
 <url><loc>https://jungmoyoon.github.io/QTE.RD/reference/index.html</loc></url>
 <url><loc>https://jungmoyoon.github.io/QTE.RD/reference/make.band.cq.html</loc></url>
