@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   QTE_RD: QTE_RD.html
-last_built: 2025-08-25T11:48Z
+last_built: 2025-08-26T04:24Z
 urls:
   reference: https://jungmoyoon.github.io/QTE.RD/reference
   article: https://jungmoyoon.github.io/QTE.RD/articles

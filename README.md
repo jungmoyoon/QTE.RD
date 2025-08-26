@@ -9,8 +9,8 @@
 The goal of **QTE.RD** is to provide comprehensive tools for testing,
 estimating, and conducting uniform inference on quantile treatment
 effects (QTEs) in sharp regression discontinuity (RD) designs. When
-treatment effects vary across covariate-groups, QTE.RD facilitates the
-estimation, testing, and visualization of heterogeneous effects by
+treatment effects vary across covariate-groups, **QTE.RD** facilitates
+the estimation, testing, and visualization of heterogeneous effects by
 incorporating covariates and applying the robust bias correction methods
 developed by Qu, Yoon, and Perron (2024, <doi:10.1162/rest_a_01168>).
 
@@ -41,13 +41,13 @@ summary(A,alpha=0.1)
 #> ---------------------------------------------------------------------- 
 #>              Bias cor.    Pointwise         Uniform      
 #>     Tau         Est.     Robust S.E.    90% Conf. Band  
-#>      0.1      -0.104       0.139      -0.438       0.229
-#>      0.2      -0.001       0.141      -0.340       0.337
-#>      0.3      -0.068       0.149      -0.425       0.290
-#>      0.4      -0.074       0.155      -0.446       0.298
-#>      0.5      -0.157       0.177      -0.581       0.268
-#>      0.6      -0.069       0.213      -0.581       0.442
-#>      0.7      -0.020       0.270      -0.668       0.629
-#>      0.8      -0.023       0.318      -0.787       0.740
-#>      0.9      -0.003       0.274      -0.661       0.656
+#>      0.1      -0.104       0.137      -0.430       0.221
+#>      0.2      -0.001       0.146      -0.348       0.346
+#>      0.3      -0.068       0.155      -0.437       0.302
+#>      0.4      -0.074       0.158      -0.451       0.303
+#>      0.5      -0.157       0.178      -0.581       0.267
+#>      0.6      -0.069       0.216      -0.584       0.445
+#>      0.7      -0.020       0.267      -0.655       0.616
+#>      0.8      -0.023       0.310      -0.762       0.715
+#>      0.9      -0.003       0.269      -0.644       0.639
 ```

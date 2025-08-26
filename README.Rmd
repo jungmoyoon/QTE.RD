@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of **QTE.RD** is to provide comprehensive tools for testing, estimating, and conducting uniform inference on quantile treatment effects (QTEs) in sharp regression discontinuity (RD) designs. When treatment effects vary across covariate-groups, QTE.RD facilitates the estimation, testing, and visualization of heterogeneous effects by incorporating covariates and applying the robust bias correction methods developed by Qu, Yoon, and Perron (2024, doi:10.1162/rest_a_01168).
+The goal of **QTE.RD** is to provide comprehensive tools for testing, estimating, and conducting uniform inference on quantile treatment effects (QTEs) in sharp regression discontinuity (RD) designs. When treatment effects vary across covariate-groups, **QTE.RD** facilitates the estimation, testing, and visualization of heterogeneous effects by incorporating covariates and applying the robust bias correction methods developed by Qu, Yoon, and Perron (2024, doi:10.1162/rest_a_01168).
 
 The package is available on CRAN and can be loaded by
 

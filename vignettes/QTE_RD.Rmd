@@ -49,17 +49,13 @@ install.packages("QTE.RD")
 
 The package depends on **quantreg** for quantile regression. If it is not already installed, install it with: `install.packages("quantreg")`.
 
-<br>
-
-# Illustration by Examples
+## Overview of the package
 
 After installing the **QTE.RD** package, it can be loaded by
 
 ```{r}
 library(QTE.RD)
 ```
-
-<br>
 
 The package provides four main functions:
 
@@ -73,7 +69,7 @@ The package provides four main functions:
 
 <br>
 
-## Data and Background 
+# Illustration by Example
 
 For illustration, we apply these functions to study the effect of tracking (assigning students into separate classes based on prior achievement) on student performance. We use a subset of the dataset from @Duflo_Dupas_Kremer_2011, which is included in the package and can be loaded with:
 
@@ -81,17 +77,15 @@ For illustration, we apply these functions to study the effect of tracking (assi
 data("ddk_2011")
 ```
 
+## Data and Background 
+
 The data `ddk_2011` comes from an experiment in 121 Kenyan primary schools that received funds in 2005 to hire an extra teacher and split their single first-grade class into two sections. Schools were randomly assigned to treatment group, 61 tracking schools, or control group, 60 non-tracking schools. In tracking schools, students were assigned to upper or lower section based on baseline test scores. In non-tracking schools, students were randomly assigned. 
 
 The experimental design has rich random variations, featuring elements of both randomized controlled trials (RCT) and RD. By comparing tracking and non-tracking schools, that is, by exploiting the RCT structure, one can study the effect of tracking on all students. Additionally, by analyzing median students within tracking schools, that is, by exploiting the RD structure, one can study the effect of tracking on marginal students who barely made or missed the opportunity of being assigned to a high ability section. 
 
-This study design incorporates elements of both randomized controlled trials (RCT) and regression discontinuity (RD). The RCT component—comparing tracking and non-tracking schools—reveals the impact of tracking on all students. The RD component—examining students near the median in tracking schools—identifies effects on those just above or below the high-ability cutoff.
-
 This vignette will focus on the RD-based evidence, which provides insight into how tracking affects students at the margin. Readers interested in the RCT-based evidence can find a more detailed analysis in @Qu_Yoon_2025.
 
 The experiment lasted 18 months. The outcome is the sum of math and language scores on endline tests, and the running variable for RD is student’s percentile rank from the baseline test. To explore heterogeneity in treatment effects, we include baseline test scores, gender, age at the endline test, and teacher status (civil servant vs. contract) as covariates.
-
-<br>
 
 ## Variables
 
@@ -105,11 +99,9 @@ yy  <- ddk_2011$ts_std
 xx  <- ddk_2011$percentile
 ```
 
-There are three indicator variables; `trk` takes 1 for tracking schools (and 0 for non-tracking schools), `con` takes 1 for students assigned to a contract teacher, `high` takes 1 for students assigned to low-achieving sections (if in tracking schools). The variable `yy` is the endline test scores normalized by the mean and standard deviation of non-tracking schools and `xx` is student's percentile rank from the baseline test. Because the outcome variable is normalized, the unit of the effect is a standard deviation of the endline test score (of non-tracking schools). 
+There are three indicator variables; `trk` takes 1 for tracking schools (and 0 for non-tracking schools), `con` takes 1 for students assigned to a contract teacher, `hgh` takes 1 for students assigned to high-achieving sections (if in tracking schools). The variable `yy` is the endline test scores normalized by the mean and standard deviation of non-tracking schools and `xx` is student's percentile rank from the baseline test. Because the outcome variable is normalized, the unit of the effect is a standard deviation of the endline test score (of non-tracking schools). 
 
-<br>
-
-## RDD - Overview
+## RDD
 
 We focus on tracking schools to evaluate the effects of tracking using the RD design. Specifically, we examine students near the median of the baseline test score, comparing those who just qualified for the upper section to those who narrowly missed it. The outcome and running variables (`yc` and `xc` below) include only students from tracking schools. The cutoff is the median of the baseline percentile (`x0 = 50`), and the treatment indicator (`dc` below) equals 1 for students placed in the high-achieving section.
 
@@ -123,8 +115,6 @@ hh <- 20
 ```
 
 The last two lines set the values of two parameters; `tlevel` defines the range of quantile index to be [0.1,0.9] and `hh` is the bandwidth at the median of the outcome distribution.
-
-<br>
 
 ## QTE from RDD without covariates
 
@@ -174,6 +164,7 @@ When `std.opt=1`, the test statistic is standardized by the pointwise standard d
 The outcome table displays the null hypotheses to be tested, test statistics, critical values, and p-values. All four tests indicate that QTEs are likely to be zero over the entire quantile range.
 
 The empirical evidence from the RDD indicates that there is no difference in endline achievement between marginal students regardless of whether they were assigned to the upper or lower section. Because students in the upper section had much higher achieving peers, this implies that there may be a factor that offsets the positive peer effect. One possibility is that tracking may allow teachers to adjust their instruction to students' needs. @Duflo_Dupas_Kremer_2011 explored this potential channel and documented evidence that teachers had incentives to focus on the students at the top of the distribution. 
+<br>
 
 The bandwidth (at the median) can be estimated as follows. 
 
@@ -196,8 +187,8 @@ To see heterogeneity in the effect of tracking, one can include additional covar
 ```{r}
 zc <- ddk_2011$girl[trk==1]
 z.eval <- c(0,1)
-A <- rd.qte(y=yc,x=cbind(xc,zc),d=dc,x0,z0=z.eval,tau=tlevel,
-            bdw=hh,bias=1)
+A <- rd.qte(y=yc,x=cbind(xc,zc),d=dc,x0,z0=z.eval,tau=tlevel,bdw=hh,
+            bias=1)
 A2 <- summary(A,alpha=0.1)
 A2
 ```
@@ -251,9 +242,14 @@ D
 
 Without bias correction, the effect for girls at the 10th percentile is no longer statistically significant, as the estimate is smaller. Otherwise, the conclusion does not change.
 
-So far, we have illustrated using a discrete covariate, but continuous variables — or a combination of both discrete and continuous covariates — can also be incorporated. For more details, please refer to @Qu_Yoon_2025.
-
 <br>
+
+# Concluding Remarks
+
+In this vignette, we illustrated the **QTE.RD** package using a binary covariate in the RD setup.
+The scope of the analysis can be broadened, and the exploration of heterogeneity becomes more interesting when incorporating a continuous covariate or a combination of both discrete and continuous covariates. Further details can be found in @Qu_Yoon_2025. Readers interested in RCT-based evidence on tracking may also refer to the more detailed analysis in @Qu_Yoon_2025.
+
+
 <br>
 
 # References
