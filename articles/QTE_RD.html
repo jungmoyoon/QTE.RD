@@ -109,16 +109,14 @@ in detail.</p>
 <p>The package depends on <strong>quantreg</strong> for quantile
 regression. If it is not already installed, install it with:
 <code>install.packages("quantreg")</code>.</p>
-<p><br></p>
 </div>
-<div class="section level2">
-<h2 id="illustration-by-examples">Illustration by Examples<a class="anchor" aria-label="anchor" href="#illustration-by-examples"></a>
-</h2>
+<div class="section level3">
+<h3 id="overview-of-the-package">Overview of the package<a class="anchor" aria-label="anchor" href="#overview-of-the-package"></a>
+</h3>
 <p>After installing the <strong>QTE.RD</strong> package, it can be
 loaded by</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">QTE.RD</span><span class="op">)</span></span></code></pre></div>
-<p><br></p>
 <p>The package provides four main functions:</p>
 <ol style="list-style-type: decimal">
 <li><p><code><a href="../reference/rd.qte.html">rd.qte()</a></code> - Estimates QTEs over a range of quantiles
@@ -138,9 +136,10 @@ uniform confidence bands to visualize estimation and testing
 results.</p></li>
 </ol>
 <p><br></p>
-<div class="section level3">
-<h3 id="data-and-background">Data and Background<a class="anchor" aria-label="anchor" href="#data-and-background"></a>
-</h3>
+</div>
+<div class="section level2">
+<h2 id="illustration-by-example">Illustration by Example<a class="anchor" aria-label="anchor" href="#illustration-by-example"></a>
+</h2>
 <p>For illustration, we apply these functions to study the effect of
 tracking (assigning students into separate classes based on prior
 achievement) on student performance. We use a subset of the dataset from
@@ -148,6 +147,9 @@ achievement) on student performance. We use a subset of the dataset from
 in the package and can be loaded with:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"ddk_2011"</span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="data-and-background">Data and Background<a class="anchor" aria-label="anchor" href="#data-and-background"></a>
+</h3>
 <p>The data <code>ddk_2011</code> comes from an experiment in 121 Kenyan
 primary schools that received funds in 2005 to hire an extra teacher and
 split their single first-grade class into two sections. Schools were
@@ -163,12 +165,6 @@ Additionally, by analyzing median students within tracking schools, that
 is, by exploiting the RD structure, one can study the effect of tracking
 on marginal students who barely made or missed the opportunity of being
 assigned to a high ability section.</p>
-<p>This study design incorporates elements of both randomized controlled
-trials (RCT) and regression discontinuity (RD). The RCT
-component—comparing tracking and non-tracking schools—reveals the impact
-of tracking on all students. The RD component—examining students near
-the median in tracking schools—identifies effects on those just above or
-below the high-ability cutoff.</p>
 <p>This vignette will focus on the RD-based evidence, which provides
 insight into how tracking affects students at the margin. Readers
 interested in the RCT-based evidence can find a more detailed analysis
@@ -179,7 +175,6 @@ student’s percentile rank from the baseline test. To explore
 heterogeneity in treatment effects, we include baseline test scores,
 gender, age at the endline test, and teacher status (civil servant
 vs. contract) as covariates.</p>
-<p><br></p>
 </div>
 <div class="section level3">
 <h3 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
@@ -193,18 +188,17 @@ vs. contract) as covariates.</p>
 <span><span class="va">xx</span>  <span class="op">&lt;-</span> <span class="va">ddk_2011</span><span class="op">$</span><span class="va">percentile</span></span></code></pre></div>
 <p>There are three indicator variables; <code>trk</code> takes 1 for
 tracking schools (and 0 for non-tracking schools), <code>con</code>
-takes 1 for students assigned to a contract teacher, <code>high</code>
-takes 1 for students assigned to low-achieving sections (if in tracking
+takes 1 for students assigned to a contract teacher, <code>hgh</code>
+takes 1 for students assigned to high-achieving sections (if in tracking
 schools). The variable <code>yy</code> is the endline test scores
 normalized by the mean and standard deviation of non-tracking schools
 and <code>xx</code> is student’s percentile rank from the baseline test.
 Because the outcome variable is normalized, the unit of the effect is a
 standard deviation of the endline test score (of non-tracking
 schools).</p>
-<p><br></p>
 </div>
 <div class="section level3">
-<h3 id="rdd---overview">RDD - Overview<a class="anchor" aria-label="anchor" href="#rdd---overview"></a>
+<h3 id="rdd">RDD<a class="anchor" aria-label="anchor" href="#rdd"></a>
 </h3>
 <p>We focus on tracking schools to evaluate the effects of tracking
 using the RD design. Specifically, we examine students near the median
@@ -226,7 +220,6 @@ high-achieving section.</p>
 <code>tlevel</code> defines the range of quantile index to be [0.1,0.9]
 and <code>hh</code> is the bandwidth at the median of the outcome
 distribution.</p>
-<p><br></p>
 </div>
 <div class="section level3">
 <h3 id="qte-from-rdd-without-covariates">QTE from RDD without covariates<a class="anchor" aria-label="anchor" href="#qte-from-rdd-without-covariates"></a>
@@ -342,7 +335,7 @@ effect. One possibility is that tracking may allow teachers to adjust
 their instruction to students’ needs. <span class="citation">Duflo,
 Dupas, and Kremer (<a href="#ref-Duflo_Dupas_Kremer_2011">2011</a>)</span> explored this
 potential channel and documented evidence that teachers had incentives
-to focus on the students at the top of the distribution.</p>
+to focus on the students at the top of the distribution. <br></p>
 <p>The bandwidth (at the median) can be estimated as follows.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">C</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rdq.bandwidth.html">rdq.bandwidth</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">yc</span>,x<span class="op">=</span><span class="va">xc</span>,d<span class="op">=</span><span class="va">dc</span>,<span class="va">x0</span>,z0<span class="op">=</span><span class="cn">NULL</span>,cv<span class="op">=</span><span class="fl">1</span>,val<span class="op">=</span><span class="op">(</span><span class="fl">5</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span>,pm.each<span class="op">=</span><span class="fl">0</span><span class="op">)</span></span>
@@ -385,8 +378,8 @@ outcome table is the same as the order of the group in
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">zc</span> <span class="op">&lt;-</span> <span class="va">ddk_2011</span><span class="op">$</span><span class="va">girl</span><span class="op">[</span><span class="va">trk</span><span class="op">==</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="va">z.eval</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rd.qte.html">rd.qte</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">yc</span>,x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">xc</span>,<span class="va">zc</span><span class="op">)</span>,d<span class="op">=</span><span class="va">dc</span>,<span class="va">x0</span>,z0<span class="op">=</span><span class="va">z.eval</span>,tau<span class="op">=</span><span class="va">tlevel</span>,</span>
-<span>            bdw<span class="op">=</span><span class="va">hh</span>,bias<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rd.qte.html">rd.qte</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">yc</span>,x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">xc</span>,<span class="va">zc</span><span class="op">)</span>,d<span class="op">=</span><span class="va">dc</span>,<span class="va">x0</span>,z0<span class="op">=</span><span class="va">z.eval</span>,tau<span class="op">=</span><span class="va">tlevel</span>,bdw<span class="op">=</span><span class="va">hh</span>,</span>
+<span>            bias<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">A2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">A</span>,alpha<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span></span>
 <span><span class="va">A2</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -530,12 +523,21 @@ with and without bias correction and present results side by side.</p>
 <p>Without bias correction, the effect for girls at the 10th percentile
 is no longer statistically significant, as the estimate is smaller.
 Otherwise, the conclusion does not change.</p>
-<p>So far, we have illustrated using a discrete covariate, but
-continuous variables — or a combination of both discrete and continuous
-covariates — can also be incorporated. For more details, please refer to
-<span class="citation">Qu and Yoon (<a href="#ref-Qu_Yoon_2025">2025</a>)</span>.</p>
-<p><br><br></p>
+<p><br></p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="concluding-remarks">Concluding Remarks<a class="anchor" aria-label="anchor" href="#concluding-remarks"></a>
+</h2>
+<p>In this vignette, we illustrated the <strong>QTE.RD</strong> package
+using a binary covariate in the RD setup. The scope of the analysis can
+be broadened, and the exploration of heterogeneity becomes more
+interesting when incorporating a continuous covariate or a combination
+of both discrete and continuous covariates. Further details can be found
+in <span class="citation">Qu and Yoon (<a href="#ref-Qu_Yoon_2025">2025</a>)</span>. Readers interested in
+RCT-based evidence on tracking may also refer to the more detailed
+analysis in <span class="citation">Qu and Yoon (<a href="#ref-Qu_Yoon_2025">2025</a>)</span>.</p>
+<p><br></p>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
