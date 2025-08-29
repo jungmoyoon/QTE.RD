@@ -9,7 +9,7 @@ Maintainer: Jungmo Yoon <jmyoon@hanyang.ac.kr>
 Description: Provides comprehensive methods for testing, estimating, and conducting uniform inference on quantile treatment effects (QTEs) in sharp regression discontinuity (RD) designs, incorporating covariates and implementing robust bias correction methods of Qu, Yoon, Perron (2024) <doi:10.1162/rest_a_01168>.
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports:
     quantreg,
     plotrix,
