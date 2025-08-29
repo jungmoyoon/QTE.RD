@@ -45,7 +45,7 @@ and (iii) positive or negative dominance hypothesis.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rdq.test</span><span class="op">(</span><span class="va">y</span>,<span class="va">x</span>,<span class="va">d</span>,<span class="va">x0</span>,z0<span class="op">=</span><span class="cn">NULL</span>,<span class="va">tau</span>,<span class="va">bdw</span>,<span class="va">bias</span>,<span class="va">alpha</span>,<span class="va">type</span>,std.opt<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rdq.test</span><span class="op">(</span><span class="va">y</span>,<span class="va">x</span>,<span class="va">d</span>,<span class="va">x0</span>,z0<span class="op">=</span><span class="cn">NULL</span>,<span class="va">tau</span>,<span class="va">bdw</span>,<span class="va">bias</span>,alpha<span class="op">=</span><span class="fl">0.1</span>,type<span class="op">=</span><span class="fl">1</span>,std.opt<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -74,7 +74,7 @@ the covariates in the remaining columns.</p></dd>
 
 <dt id="arg-z-">z0<a class="anchor" aria-label="anchor" href="#arg-z-"></a></dt>
 <dd><p>the value of the covariates at which to evaluate the effects.
-For example, if a female dummy is included, z0 = 1 indicates the female subgroup.</p></dd>
+For example, if a female dummy is included, <em>z0 = 1</em> indicates the female subgroup.</p></dd>
 
 
 <dt id="arg-tau">tau<a class="anchor" aria-label="anchor" href="#arg-tau"></a></dt>
@@ -82,22 +82,23 @@ For example, if a female dummy is included, z0 = 1 indicates the female subgroup
 
 
 <dt id="arg-bdw">bdw<a class="anchor" aria-label="anchor" href="#arg-bdw"></a></dt>
-<dd><p>the bandwidth value(s). If 'bdw' is a scalar, it is interpreted as the
+<dd><p>the bandwidth value(s). If <code>bdw</code> is a scalar, it is interpreted as the
 bandwidth for the median. The bandwidths for the rest of the quantiles are
 computed automatically using the formula in Yu and Jones (1998).
-If it is a vector with the same dimension as 'tau',
+If it is a vector with the same dimension as <code>tau</code>,
 the function will use these values for the respective quantiles accordingly.</p></dd>
 
 
 <dt id="arg-bias">bias<a class="anchor" aria-label="anchor" href="#arg-bias"></a></dt>
 <dd><p>either 0 or 1. If bias=1, the QTE estimate is bias corrected and
 the robust confidence band in Qu, Yoon, and Perron (2024) is produced.
-If bias=0, no bias correction is implemented.</p></dd>
+If <em>bias=0</em>, no bias correction is implemented.</p></dd>
 
 
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
-<dd><p>a number between 0 and 1, the desired significance level.
-When alpha=0.1, one will get a 90% uniform band.</p></dd>
+<dd><p>a numeric value between 0 and 1 specifying the significance level.
+For example, setting <code>alpha = 0.1</code> yields a 90% uniform confidence band.
+Multiple significance levels can be specified, e.g., <code>alpha = c(0.1, 0.05)</code>.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>
@@ -109,8 +110,8 @@ and set <em>type</em> to 4 to test the null hypothesis of uniformly non-positive
 
 
 <dt id="arg-std-opt">std.opt<a class="anchor" aria-label="anchor" href="#arg-std-opt"></a></dt>
-<dd><p>either 0 or 1. If <em>std.opt=1</em>, the test statistic is standardized so that
-the variance is equalized across quantiles; if <em>std.opt=0</em>, the test is not standardized.</p></dd>
+<dd><p>either 0 or 1. If <code>std.opt=1</code>, the test statistic is standardized so that
+the variance is equalized across quantiles; if <code>std.opt=0</code>, the test is not standardized.</p></dd>
 
 </dl></div>
     <div class="section level2">

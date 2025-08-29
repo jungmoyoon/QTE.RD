@@ -45,7 +45,7 @@ This function is used by <code>rd.qte</code> to generate uniform bands.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rdq.band</span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, <span class="va">d</span>, <span class="va">x0</span>, z0 <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">tau</span>, <span class="va">bdw</span>, <span class="va">alpha</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rdq.band</span><span class="op">(</span><span class="va">y</span>, <span class="va">x</span>, <span class="va">d</span>, <span class="va">x0</span>, z0 <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">tau</span>, <span class="va">bdw</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -74,7 +74,7 @@ the covariates in the remaining columns.</p></dd>
 
 <dt id="arg-z-">z0<a class="anchor" aria-label="anchor" href="#arg-z-"></a></dt>
 <dd><p>the value of the covariates at which to evaluate the effects.
-For example, if a female dummy is included, z0 = 1 may indicate the female subgroup.</p></dd>
+For example, if a female dummy is included, <code>z0 = 1</code> may indicate the female subgroup.</p></dd>
 
 
 <dt id="arg-tau">tau<a class="anchor" aria-label="anchor" href="#arg-tau"></a></dt>
@@ -82,15 +82,17 @@ For example, if a female dummy is included, z0 = 1 may indicate the female subgr
 
 
 <dt id="arg-bdw">bdw<a class="anchor" aria-label="anchor" href="#arg-bdw"></a></dt>
-<dd><p>the bandwidth value(s). If 'bdw' is a scalar, it is interpreted as the
+<dd><p>the bandwidth value(s). If <code>bdw</code> is a scalar, it is interpreted as the
 bandwidth for the median. The bandwidths for the rest of the quantiles are
 computed automatically using the formula in Yu and Jones (1998).
-If it is a vector with the same dimension as 'tau',
+If it is a vector with the same dimension as `tau“,
 the function will use these values for the respective quantiles accordingly.</p></dd>
 
 
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
-<dd><p>a number between 0 and 1, the desired significance level.</p></dd>
+<dd><p>a numeric value between 0 and 1 specifying the significance level.
+For example, setting <code>alpha = 0.1</code> yields a 90% uniform confidence band.
+Multiple significance levels can be specified, e.g., <code>alpha = c(0.1, 0.05)</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
