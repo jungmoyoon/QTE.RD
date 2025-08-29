@@ -4,7 +4,7 @@
 \alias{rdq.band}
 \title{Uniform confidence bands for QTE}
 \usage{
-rdq.band(y, x, d, x0, z0 = NULL, tau, bdw, alpha)
+rdq.band(y, x, d, x0, z0 = NULL, tau, bdw, alpha = 0.1)
 }
 \arguments{
 \item{y}{a numeric vector, the outcome variable.}
@@ -20,17 +20,19 @@ the covariates in the remaining columns.}
 \item{x0}{the cutoff point.}
 
 \item{z0}{the value of the covariates at which to evaluate the effects.
-For example, if a female dummy is included, z0 = 1 may indicate the female subgroup.}
+For example, if a female dummy is included, \code{z0 = 1} may indicate the female subgroup.}
 
 \item{tau}{a vector of quantiles of interest.}
 
-\item{bdw}{the bandwidth value(s). If 'bdw' is a scalar, it is interpreted as the
+\item{bdw}{the bandwidth value(s). If \code{bdw} is a scalar, it is interpreted as the
 bandwidth for the median. The bandwidths for the rest of the quantiles are
 computed automatically using the formula in Yu and Jones (1998).
-If it is a vector with the same dimension as 'tau',
+If it is a vector with the same dimension as `tau``,
 the function will use these values for the respective quantiles accordingly.}
 
-\item{alpha}{a number between 0 and 1, the desired significance level.}
+\item{alpha}{a numeric value between 0 and 1 specifying the significance level.
+For example, setting \code{alpha = 0.1} yields a 90\% uniform confidence band.
+Multiple significance levels can be specified, e.g., \code{alpha = c(0.1, 0.05)}.}
 }
 \value{
 \describe{

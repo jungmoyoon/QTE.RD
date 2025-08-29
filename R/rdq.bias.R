@@ -11,8 +11,8 @@
 #' @param h.tau the bandwidth values (specified for each quantile level), for estimating conditional quantiles.
 #' @param h.tau2 the bandwidth values for the local quadratic quantile regression, for estimating the bias terms.
 #' @param fx conditional density estimates.
-#' @param cov either 0 or 1. Set \emph{cov=1} if covariates are present in the model;
-#' otherwise set \emph{cov=0}.
+#' @param cov either 0 or 1. Set `cov=1` if covariates are present in the model;
+#' otherwise set `cov=0`.
 #'
 #' @return A list with elements:
 #' \describe{

@@ -4,8 +4,9 @@
 #' \code{summary.qte} returns uniform confidence bands and standard errors for QTE estimates.
 #'
 #' @param object It is an object of class "qte" produced by \code{rd.qte}.
-#' @param alpha a number between 0 and 1, the desired significance level. For example,
-#' when alpha=0.1, one will get a 90% uniform band.
+#' @param alpha a number between 0 and 1, the desired significance level.
+#' For example, setting `alpha = 0.1` yields a 90% uniform confidence band.
+#' Multiple significance levels can be specified, e.g., `alpha = c(0.1, 0.05)`.
 #' @param ... optional arguments.
 #'
 #' @return A list with elements:

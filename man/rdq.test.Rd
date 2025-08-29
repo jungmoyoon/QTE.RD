@@ -4,7 +4,7 @@
 \alias{rdq.test}
 \title{tests for QTE}
 \usage{
-rdq.test(y,x,d,x0,z0=NULL,tau,bdw,bias,alpha,type,std.opt=1)
+rdq.test(y,x,d,x0,z0=NULL,tau,bdw,bias,alpha=0.1,type=1,std.opt=1)
 }
 \arguments{
 \item{y}{a numeric vector, the outcome variable.}
@@ -20,22 +20,23 @@ the covariates in the remaining columns.}
 \item{x0}{the cutoff point.}
 
 \item{z0}{the value of the covariates at which to evaluate the effects.
-For example, if a female dummy is included, z0 = 1 indicates the female subgroup.}
+For example, if a female dummy is included, \emph{z0 = 1} indicates the female subgroup.}
 
 \item{tau}{a vector of quantiles of interest.}
 
-\item{bdw}{the bandwidth value(s). If 'bdw' is a scalar, it is interpreted as the
+\item{bdw}{the bandwidth value(s). If \code{bdw} is a scalar, it is interpreted as the
 bandwidth for the median. The bandwidths for the rest of the quantiles are
 computed automatically using the formula in Yu and Jones (1998).
-If it is a vector with the same dimension as 'tau',
+If it is a vector with the same dimension as \code{tau},
 the function will use these values for the respective quantiles accordingly.}
 
 \item{bias}{either 0 or 1. If bias=1, the QTE estimate is bias corrected and
 the robust confidence band in Qu, Yoon, and Perron (2024) is produced.
-If bias=0, no bias correction is implemented.}
+If \emph{bias=0}, no bias correction is implemented.}
 
-\item{alpha}{a number between 0 and 1, the desired significance level.
-When alpha=0.1, one will get a 90\% uniform band.}
+\item{alpha}{a numeric value between 0 and 1 specifying the significance level.
+For example, setting \code{alpha = 0.1} yields a 90\% uniform confidence band.
+Multiple significance levels can be specified, e.g., \code{alpha = c(0.1, 0.05)}.}
 
 \item{type}{a value in 1--4. Set \emph{type} to 1 to test the null hypothesis of a zero
 treatment effect against the alternative hypothesis of significant treatment effects;
@@ -43,8 +44,8 @@ set \emph{type} to 2 to test the null hypothesis of homogeneous treatment agains
 set \emph{type} to 3 to test the null hypothesis of uniformly non-negative treatment effects against the presence of negative effects;
 and set \emph{type} to 4 to test the null hypothesis of uniformly non-positive treatment effects against the presence of positive effects at some quantiles.}
 
-\item{std.opt}{either 0 or 1. If \emph{std.opt=1}, the test statistic is standardized so that
-the variance is equalized across quantiles; if \emph{std.opt=0}, the test is not standardized.}
+\item{std.opt}{either 0 or 1. If \code{std.opt=1}, the test statistic is standardized so that
+the variance is equalized across quantiles; if \code{std.opt=0}, the test is not standardized.}
 }
 \value{
 A list with elements:

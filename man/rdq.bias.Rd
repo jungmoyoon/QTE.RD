@@ -25,8 +25,8 @@ rdq.bias(y, x, dz, x0, z0, taus, h.tau, h.tau2, fx, cov)
 
 \item{fx}{conditional density estimates.}
 
-\item{cov}{either 0 or 1. Set \emph{cov=1} if covariates are present in the model;
-otherwise set \emph{cov=0}.}
+\item{cov}{either 0 or 1. Set \code{cov=1} if covariates are present in the model;
+otherwise set \code{cov=0}.}
 }
 \value{
 A list with elements:

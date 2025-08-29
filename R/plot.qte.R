@@ -3,7 +3,7 @@
 #' \code{plot.qte} generates plots summarizing the QTE estimates and their uniform confidence bands, helping users visualize the results.
 #' It also makes plots for conditional quantile processes for each side of the cutoff.
 #'
-#' @param x an object of class "qte" or "summary.qte" produce by \code{rd.qte}.
+#' @param x an object of class `qte` or `summary.qte` produce by \code{rd.qte}.
 #' @param ptype either 1 or 2. Set \emph{ptype=1} for the QTE plots, and
 #' \emph{ptype=2} for the conditional quantile plots. The default value is 1.
 #' @param ytext the y-axis label.

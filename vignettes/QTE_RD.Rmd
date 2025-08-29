@@ -240,7 +240,7 @@ D <- rdq.band(y=yc,x=cbind(xc,zc),d=dc,x0,z0=z.eval,tau=tlevel,
 D
 ```
 
-Without bias correction, the effect for girls at the 10th percentile is no longer statistically significant, as the estimate is smaller. Otherwise, the conclusion does not change.
+Without bias correction, the effect for girls at the 10-th percentile is no longer statistically significant, as the estimate is smaller. Otherwise, the conclusion does not change.
 
 <br>
 

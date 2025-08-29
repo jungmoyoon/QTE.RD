@@ -2,7 +2,7 @@
 #' @description
 #' \code{rdq.bandwidth} implements two bandwidth selection rules and obtains the cross-validation (CV) bandwidth and the MSE optimal bandwidth.
 #'
-#' @usage rdq.bandwidth(y, x, d, x0, z0=NULL, cv, val,hp=NULL, pm.each=0, bdy=1, p.order=1, xl=0.5)
+#' @usage rdq.bandwidth(y, x, d, x0, z0=NULL, cv, val, hp=NULL, pm.each=0, bdy=1, p.order=1, xl=0.5)
 #'
 #' @param y a numeric vector, the outcome variable.
 #' @param x a vector (or a matrix) of covariates, the first column is the running variable.
@@ -19,7 +19,7 @@
 #' @param bdy either 0 or 1. When \emph{bdy=1}, the CV bandwidth uses the boundary point procdure.
 #' @param p.order either 1 or 2. When \emph{p.order=1}, a local linear regression is used, and
 #' when \emph{p.order=2}, a local quadratic regression is used.
-#' @param xl if \emph{xl=0.5}, the CV bandwidth use the 50% of observations closest to \eqn{x_0}.
+#' @param xl if `xl=0.5`, the CV bandwidth use the 50% of observations closest to \eqn{x_0}.
 #'
 #' @return
 #' A list with elements:

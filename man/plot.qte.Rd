@@ -7,7 +7,7 @@
 \method{plot}{qte}(x, ptype = 1, ytext = NULL, mtext = NULL, subtext = NULL, ...)
 }
 \arguments{
-\item{x}{an object of class "qte" or "summary.qte" produce by \code{rd.qte}.}
+\item{x}{an object of class \code{qte} or \code{summary.qte} produce by \code{rd.qte}.}
 
 \item{ptype}{either 1 or 2. Set \emph{ptype=1} for the QTE plots, and
 \emph{ptype=2} for the conditional quantile plots. The default value is 1.}

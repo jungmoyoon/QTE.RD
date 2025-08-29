@@ -9,8 +9,9 @@
 \arguments{
 \item{object}{It is an object of class "qte" produced by \code{rd.qte}.}
 
-\item{alpha}{a number between 0 and 1, the desired significance level. For example,
-when alpha=0.1, one will get a 90\% uniform band.}
+\item{alpha}{a number between 0 and 1, the desired significance level.
+For example, setting \code{alpha = 0.1} yields a 90\% uniform confidence band.
+Multiple significance levels can be specified, e.g., \code{alpha = c(0.1, 0.05)}.}
 
 \item{...}{optional arguments.}
 }

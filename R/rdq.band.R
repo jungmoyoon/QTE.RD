@@ -13,14 +13,16 @@
 #' @param d a numeric vector, the treatment status.
 #' @param x0 the cutoff point.
 #' @param z0 the value of the covariates at which to evaluate the effects.
-#' For example, if a female dummy is included, z0 = 1 may indicate the female subgroup.
+#' For example, if a female dummy is included, `z0 = 1` may indicate the female subgroup.
 #' @param tau a vector of quantiles of interest.
-#' @param bdw the bandwidth value(s). If 'bdw' is a scalar, it is interpreted as the
+#' @param bdw the bandwidth value(s). If `bdw` is a scalar, it is interpreted as the
 #' bandwidth for the median. The bandwidths for the rest of the quantiles are
 #' computed automatically using the formula in Yu and Jones (1998).
-#' If it is a vector with the same dimension as 'tau',
+#' If it is a vector with the same dimension as `tau``,
 #' the function will use these values for the respective quantiles accordingly.
-#' @param alpha a number between 0 and 1, the desired significance level.
+#' @param alpha a numeric value between 0 and 1 specifying the significance level.
+#' For example, setting `alpha = 0.1` yields a 90% uniform confidence band.
+#' Multiple significance levels can be specified, e.g., `alpha = c(0.1, 0.05)`.
 #'
 #' @return
 #' \describe{
@@ -61,7 +63,7 @@
 #' y = x + 0.3*(x^2) - 0.1*(x^3) + 1.5*d + d*z + rnorm(n)
 #' \donttest{D = rdq.band(y=y,x=cbind(x,z),d=d,x0=0,z0=c(0,1),tau=tlevel,bdw=2,alpha=0.1)}
 #'
-rdq.band <- function(y,x,d,x0,z0=NULL,tau,bdw,alpha){
+rdq.band <- function(y,x,d,x0,z0=NULL,tau,bdw,alpha=0.1){
   x <- as.matrix(x)
   dz <- ncol(x)-1
   cov <- if(dz == 0) 0 else 1
