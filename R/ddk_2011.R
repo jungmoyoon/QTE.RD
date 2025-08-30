@@ -21,7 +21,7 @@
 #' \item{ts_std}{Standardized total endline score.}
 #' }
 #'
-#' @source <https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/16787>
+#' @source \doi{10.7910/DVN/LWFH9U}
 #'
 #' @references Esther Duflo, Pascaline Dupas, and Michael Kremer (2011) “Peer Effects, Teacher Incentives, and the Impact of Tracking: Evidence from a Randomized Evaluation in Kenya,” American Economic Review, 1739-1774.
 #'

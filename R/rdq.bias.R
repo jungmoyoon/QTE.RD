@@ -23,7 +23,7 @@
 #'
 #' @references Zhongjun Qu, Jungmo Yoon, Pierre Perron (2024), "Inference on Conditional Quantile
 #' Processes in Partially Linear Models with Applications to the Impact of Unemployment Benefits,"
-#' The Review of Economics and Statistics; https://doi.org/10.1162/rest_a_01168
+#' The Review of Economics and Statistics; \doi{10.1162/rest_a_01168}
 #'
 #' @examples
 #' n = 500

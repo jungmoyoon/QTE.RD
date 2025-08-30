@@ -20,7 +20,7 @@ A data frame with 5795 rows and 10 columns.
 }
 }
 \source{
-\url{https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/16787}
+\doi{10.7910/DVN/LWFH9U}
 }
 \usage{
 data(ddk_2011)
